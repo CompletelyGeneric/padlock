@@ -36,6 +36,16 @@ export function randomString(length = 32, charSet = charSets.full) {
     return str;
 }
 
+export function charSetFromBlackList(charSet: string, blackList: string) {
+    let parsedCharSet = "";
+    for (var char of charSet) {
+        if (blackList.indexOf(char) == -1) {
+            parsedCharSet += char;
+        }
+    }
+    return parsedCharSet;
+}
+
 export function debounce(fn: (...args: any[]) => any, delay: number) {
     let timeout: number;
 
@@ -64,6 +74,6 @@ export function resolveLanguage(locale: string, supportedLanguages: { [lang: str
     return Object.keys(supportedLanguages)[0];
 }
 
-export function applyMixins(baseClass, ...mixins) {
+export function applyMixins(baseClass: any, ...mixins: any[]) {
     return mixins.reduce((cls, mixin) => mixin(cls), baseClass);
 }
